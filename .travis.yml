@@ -9,10 +9,9 @@ before_deploy:
 - rm -rf project
 - zip web.zip -r *
 deploy:
-  skip_cleanup: true
   provider: releases
   api_key:
-    secure: TYkH+TVMEjcQQ/8a73l9hqyAWgI0ZLpDyTfwLxvWXp8o1Qd/DfP79RSsyb0frS9a0nADgi5ldQskXtvfSq3e3guhYJDHem2hgwc8BJWQ4SyyikaqxCBRE95B5h/5EJL//KGCksa1M4NLIuSLguthxx8y7r+RJmgw0dJjyfwL86Q=
+    secure: ELALxCfG6XC1YBgiWr48p840QTBfl51O9tPuKxiRsb9RwRLXrBUelo2Tj8M6pfLMfS4JWvuRDKaKMVzknZ1AprhEet9kU8RW/Vz1SgMFm7YnRzTopuIDuTnBy4xv/PBS+HGsDSl4lqOC+MSXIGHHNjwL9IqLU47POL5izwNOEFW9PTs0K+E2yPVbxJ0otPu2jf1jcfRZf2a57Fq+A1z0O97kvq2tTCRIvsufL4wwzJspjTGozX4S4+14rgUyAszHRW0Dt56fVUQ58YnQOu7F+rlx6ET4JInAa2z5kaHKgrMRi068eiSgd9N2TmLJOMnlfIm7CxGp2BvUe/70k8HCQFubmAD4MPm5hElvzG1gLqnm7Iv7gatrfNLHuyTMC4DJwy/sZMezgwdCV71OXBrWUcuJlINbb2L9KXaEWl8d3mYrZPVwtJB+i5GuZ8iHTvt9hmpf1D2+qa5zIBETt4y/GAGVv3AZZyf4OFbq5Yje48cCJ0mXbJn0YJzHGUktyiH+EHiCGZ6BXH03gzmN6pgB+7vGYGC7INGHTtJai2GX+v4W8rRBf3mLFZv7hU8iVAXu+KLWlrtL8iHqRYy4G0mEsvNDEjjWIIyFGFhGPYqlAzbDRykgX/ZJLBsKUiL0dXh72Yhe8X+hPRXqX3xl4q5rnJfW17PnEreI17OnZQktfbQ=
   file: web.zip
   on:
     repo: repocad/website

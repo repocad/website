@@ -160,28 +160,11 @@
     var newDrawing = document.getElementById("drawingNewButton");
 
     var codeEditor = new CodeEditor(editor);
-    var view = new CanvasView(canvas, codeEditor);
-    var omni = new Omnibox(title, codeEditor, view, searchDrawing, newDrawing);
-
-    var repocad = new Repocad(view, codeEditor).setLog(log);
 
     editor.style.height = window.innerHeight * 0.7 - 52 + "px";
 
     canvas.width = container.offsetWidth / 2 - 20;
     canvas.height = window.innerHeight * 0.7;
-
-    function MouseWheelHandler(e) {
-
-        // cross-browser wheel delta
-        var e = window.event || e; // old IE support
-        var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-        view.zoom(delta, e);
-
-        // Stop scroll from happening
-        if (e.preventDefault)
-            e.preventDefault();
-        return false;
-    }
 
     function saveAs(uri, filename) {
         var link = document.createElement('a');
@@ -203,18 +186,31 @@
         }
     }
 
-
-    if (canvas.addEventListener) {
-        // IE9, Chrome, Safari, Opera
-        canvas.addEventListener("mousewheel", MouseWheelHandler, false);
-        // Firefox
-        canvas.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
-    }
-
     window.onload = function (e) {
-        repocad.init();
-
+        var view = new CanvasView(canvas);
+        var repocad = new Repocad(view, codeEditor).setLog(log);
+        var omni = new Omnibox(title, codeEditor, view, searchDrawing, newDrawing);
         var drawings = repocad.getDrawings();
+
+        function MouseWheelHandler(e) {
+
+            // cross-browser wheel delta
+            var e = window.event || e; // old IE support
+            var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+            view.zoom(delta, e);
+
+            // Stop scroll from happening
+            if (e.preventDefault)
+                e.preventDefault();
+            return false;
+        }
+
+        if (canvas.addEventListener) {
+            // IE9, Chrome, Safari, Opera
+            canvas.addEventListener("mousewheel", MouseWheelHandler, false);
+            // Firefox
+            canvas.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
+        }
 
         for (var i in drawings) {
             var e = new Option();

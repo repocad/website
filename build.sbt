@@ -1,4 +1,4 @@
-val core = RootProject(uri("git://github.com/repocad/core"))
+val core = RootProject(file("../core"))
 
 val project = Project("website", file("."))
   .settings(
@@ -8,6 +8,7 @@ val project = Project("website", file("."))
       "-Xlint",
       "-deprecation"
     )
+//    resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
   .enablePlugins(ScalaJSPlugin)
   .dependsOn(core)

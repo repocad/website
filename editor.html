@@ -41,6 +41,34 @@
     #canvas {
         border: 1px solid #777;
     }
+
+    #log {
+        padding: 3px 0 3px 5px;
+    }
+
+    #log.error {
+        background-color: #F43;
+    }
+
+    #log.success {
+        background-color: #EEE;
+    }
+
+    .line-error {
+        background-color: #FAA !important;
+        color: #F9F9F9 !important;
+    }
+
+    #zoomButtons {
+        font-size: 130%;
+        position: absolute;
+        right: 7px;
+        bottom: 5px;
+    }
+    #zoomButtons a {
+        color: #555;
+    }
+
 </style>
 
 <div class="container" id="container">
@@ -72,30 +100,16 @@
 
         <div class="six columns" id="editor"></div>
 
-        <div class="six columns">
+        <div class="six columns" style="position: relative;">
             <canvas id="canvas"></canvas>
+            <div id="zoomButtons">
+                <a id="zoomButtonOut" href="#" title="Zoom out"><i class="fa fa-search-minus"> </i></a>
+                <a id="zoomButtonIn" href="#" title="Zoom in"><i class="fa fa-search-plus"> </i></a>
+            </div>
         </div>
 
+
     </div>
-
-    <style type="text/css">
-        #log {
-            padding: 3px 0 3px 5px;
-        }
-
-        #log.error {
-            background-color: #F43;
-        }
-
-        #log.success {
-            background-color: #EEE;
-        }
-
-        .line-error {
-            background-color: #FAA !important;
-            color: #F9F9F9 !important;
-        }
-    </style>
 
     <!-- Debug, save and export -->
     <div class="row">
@@ -158,6 +172,8 @@
     var title = document.getElementById("drawingTitle");
     var searchDrawing = document.getElementById("drawingSearchButton");
     var newDrawing = document.getElementById("drawingNewButton");
+    var zoomIn = document.getElementById("zoomButtonIn");
+    var zoomOut = document.getElementById("zoomButtonOut");
 
     var codeEditor = new CodeEditor(editor);
 
@@ -221,18 +237,23 @@
 
         toPdf.onclick = function (e) {
             repocad.printPdf("IOD_2d_print.pdf");
-        }
+        };
         toPng.onclick = function (e) {
             var png = repocad.printPng();
             var url = canvas.toDataURL("image/png");
             var url2 = png.replace(/octet-stream/, 'png');
             window.location.href = url;
             console.log(png);
-        }
-
+        };
         save.onclick = function (e) {
             repocad.save();
-        }
+        };
+        zoomIn.onclick = function(e) {
+            view.zoom(1.2)
+        };
+        zoomOut.onclick = function(e) {
+            view.zoom(0.8)
+        };
     };
 </script>
 </body>
